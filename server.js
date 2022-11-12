@@ -56,7 +56,7 @@ if (self) {
 
 		let data = JSON.stringify(tempToxicCount);
 		fs.writeFileSync('./toxicCount.json', data);
-		let toxicResponse = "Bumble has been toxic " + currentCount + " times. So toxic!";
+		let toxicResponse = "Bumble has been toxic " + currentCount + " times. So toxic! hibumbToxic1 hibumbSassy";
 
 		client.say(target, toxicResponse);
 		console.log(toxicResponse)
