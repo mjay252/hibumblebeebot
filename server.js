@@ -40,44 +40,44 @@ if (self) {
 	return;
 }
 
-if(msg === "!toxicbumble") {
-	try {
-		const data = fs.readFileSync('./toxicCount.json');
-		toxicCount = JSON.parse(data);
-	} catch (err) {
-		console.error(err);
-}
+	if(msg === "!toxic") {
+		try {
+			const data = fs.readFileSync('./toxicCount.json');
+			toxicCount = JSON.parse(data);
+		} catch (err) {
+			console.error(err);
+		}
 
-	let currentCount = toxicCount.toxicCount;
-	currentCount++;
-	let tempToxicCount = {
-		"toxicCount" : currentCount
+		let currentCount = toxicCount.toxicCount;
+		currentCount++;
+		let tempToxicCount = {
+			"toxicCount" : currentCount
+		}
+
+		let data = JSON.stringify(tempToxicCount);
+		fs.writeFileSync('./toxicCount.json', data);
+		let toxicResponse = "Bumble has been toxic " + currentCount + " times. So toxic!";
+
+		client.say(target, toxicResponse);
+		console.log(toxicResponse)
+		console.log(`* Executed toxic trigger command`);
 	}
 
-	let data = JSON.stringify(tempToxicCount);
-	fs.writeFileSync('./toxicCount.json', data);
-	let toxicResponse = "Bumble has been toxic " + currentCount + " times. So toxic!";
+	if(msg === "!toxiccount") {
+		try {
+			const data = fs.readFileSync('./toxicCount.json');
+			toxicCount = JSON.parse(data);
+		} catch (err) {
+			console.error(err);
+		}
 
-	client.say(target, toxicResponse);
-	console.log(toxicResponse)
-	console.log(`* Executed toxic trigger command`);
-}
+		let currentCount = toxicCount.toxicCount;
+		let toxicResponse = "Bumble toxic count: " + currentCount;
 
-if(msg === "!toxiccount") {
-	try {
-		const data = fs.readFileSync('./toxicCount.json');
-		toxicCount = JSON.parse(data);
-	} catch (err) {
-		console.error(err);
+		client.say(target, toxicResponse);
+		console.log(toxicResponse)
+		console.log(`* Executed toxic trigger command`);
 	}
-
-	let currentCount = toxicCount.toxicCount;
-	let toxicResponse = "Bumble toxic count: " + currentCount;
-
-	client.say(target, toxicResponse);
-	console.log(toxicResponse)
-	console.log(`* Executed toxic trigger command`);
-}
 };
 
 // Called every time the bot connects to Twitch chat
